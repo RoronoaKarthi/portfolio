@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import darkClothBg from '../assets/backgrounds/dark-cloth-bg.png';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { FiArrowUpRight, FiGithub } from 'react-icons/fi';
@@ -100,7 +101,7 @@ export default function Work() {
 
       {/* Background image */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <img src="/src/assets/backgrounds/dark-cloth-bg.png" alt="" className="w-full h-full object-cover" style={{ transform: 'scale(1.05)' }} />
+        <img src={darkClothBg} alt="" className="w-full h-full object-cover" style={{ transform: 'scale(1.05)' }} />
         <div className="absolute inset-0 bg-black/55" />
       </div>
 
@@ -143,7 +144,7 @@ export default function Work() {
               >
                 <div className="absolute inset-0 bg-[#ff2a2a]/5 z-10 mix-blend-overlay" />
                 <img
-                  src={p.image}
+                  src={`${import.meta.env.BASE_URL}${p.image}`}
                   alt={p.title}
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105"
                 />

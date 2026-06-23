@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import darkClothBg from '../assets/backgrounds/dark-cloth-bg.png';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
@@ -77,7 +78,7 @@ export default function About() {
 
       {/* Background image */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <img src="/src/assets/backgrounds/dark-cloth-bg.png" alt="" className="w-full h-full object-cover" style={{ transform: 'scale(1.05)' }} />
+        <img src={darkClothBg} alt="" className="w-full h-full object-cover" style={{ transform: 'scale(1.05)' }} />
         <div className="absolute inset-0 bg-black/55" />
       </div>
       <div className="absolute inset-0 z-[1] opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)', backgroundSize: '50px 50px' }} />
@@ -85,7 +86,7 @@ export default function About() {
 
       {/* Left image */}
       <div className="absolute inset-y-0 left-0 w-[45%] z-10 pointer-events-none overflow-hidden hidden lg:block" style={{ WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%)', maskImage: 'linear-gradient(to right, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%)' }}>
-        <img src="/src/assets/hero-video/ezgif-frame-240.jpg" alt="About" className="w-full h-full object-cover" />
+        <img src={`${import.meta.env.BASE_URL}hero-video/ezgif-frame-240.jpg`} alt="About" className="w-full h-full object-cover" />
       </div>
 
       {/* Pulsing red blob */}

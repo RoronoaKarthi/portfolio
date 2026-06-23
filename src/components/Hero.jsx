@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import heroOverlayImg from '../assets/hero-video/hero-image/hero.png';
 import { MagneticButton } from '../hooks/useInteractive';
+const heroOverlayImg = `${import.meta.env.BASE_URL}hero-video/hero-image/hero.png`;
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -223,7 +223,7 @@ const Hero = () => {
     for (let i = 1; i <= frameCount; i++) {
       const num = String(i).padStart(3, '0');
       const img = new Image();
-      img.src = `/src/assets/hero-video/ezgif-frame-${num}.jpg`;
+      img.src = `${import.meta.env.BASE_URL}hero-video/ezgif-frame-${num}.jpg`;
       
       img.onload = () => {
         loadedCount++;
@@ -532,7 +532,7 @@ const Hero = () => {
         {/* Top Layer Cutout Image */}
         <img 
           ref={topLayerRef}
-          src="/src/assets/hero-video/ezgif-frame-240.jpg" 
+          src={`${import.meta.env.BASE_URL}hero-video/ezgif-frame-240.jpg`} 
           className="absolute inset-0 h-full w-full object-cover origin-center pointer-events-none z-[2] opacity-0"
           alt="Top Layer Cutout"
         />

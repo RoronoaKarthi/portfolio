@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import darkClothBg from '../assets/backgrounds/dark-cloth-bg.png';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { FiLayout, FiZap, FiCloud, FiCpu, FiPenTool, FiBox, FiArrowRight } from 'react-icons/fi';
@@ -83,7 +84,7 @@ export default function Services() {
 
       {/* Background image */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <img src="/src/assets/backgrounds/dark-cloth-bg.png" alt="" className="w-full h-full object-cover" style={{ transform: 'scale(1.05)' }} />
+        <img src={darkClothBg} alt="" className="w-full h-full object-cover" style={{ transform: 'scale(1.05)' }} />
         <div className="absolute inset-0 bg-black/55" />
       </div>
       <div className="absolute inset-0 z-[1] opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
