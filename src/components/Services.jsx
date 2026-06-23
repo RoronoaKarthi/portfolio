@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { FiLayout, FiZap, FiCloud, FiCpu, FiPenTool, FiBox, FiArrowRight, FiActivity, FiShield } from 'react-icons/fi';
+import { FiLayout, FiZap, FiCloud, FiCpu, FiPenTool, FiBox, FiArrowRight } from 'react-icons/fi';
 import { TiltCard, MagneticButton, SignalDot } from '../hooks/useInteractive';
 
 gsap.registerPlugin(ScrollTrigger);

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { FiArrowUpRight, FiGithub } from 'react-icons/fi';
@@ -11,50 +11,50 @@ const punch = (el) => {
   gsap.fromTo(el, { scale: 0.94 }, { scale: 1, duration: 0.4, ease: 'back.out(3)' });
 };
 
+const projects = [
+  {
+    number: '01',
+    title: 'Real-Time Weather Forecasting App',
+    date: 'Apr 2024',
+    description: 'Developed a dynamic weather forecasting application using API-based real-time data retrieval. Designed an intuitive user interface for displaying live weather conditions and forecasts.',
+    tags: ['API Integration', 'Data Visualization', 'UI Design', 'Forecasting'],
+    link: 'https://github.com/RoronoaKarthi',
+    image: 'Weather.png',
+    imageLabel: 'WEATHER_SYS_01',
+  },
+  {
+    number: '02',
+    title: 'Stolen Vehicle Detection using YOLO',
+    date: 'June 2025',
+    description: 'Built a computer vision system to detect and track vehicles using YOLO and OpenCV. Integrated license plate recognition using EasyOCR/Tesseract. Implemented real-time database matching with alert generation and evidence logging.',
+    tags: ['YOLO', 'OpenCV', 'EasyOCR', 'Python', 'Computer Vision'],
+    link: 'https://github.com/RoronoaKarthi',
+    image: 'stolen vehicle.png',
+    imageLabel: 'VISION_SYS_02',
+  },
+  {
+    number: '03',
+    title: 'Interactive Websites',
+    date: 'June 2025',
+    description: 'Developed modern interactive websites with responsive design, engaging animations, and optimized user experiences using HTML, CSS, JavaScript, and React..',
+    tags: ['HTML', 'CSS', 'JavaScript', 'React', 'Responsive Design', 'UI/UX'],
+    link: 'https://github.com/RoronoaKarthi',
+    image: 'Web.png',
+    imageLabel: 'VISION_SYS_02',
+  },
+];
+
+const certs = [
+  { name: 'Network Essentials', org: 'Cisco', date: 'Jun 2024' },
+  { name: 'AI Fundamentals', org: 'IBM Skillbuild', date: 'Mar 2024' },
+  { name: 'Cyber Security Fundamentals', org: 'IBM Skillbuild', date: 'Nov 2023' },
+  { name: 'Cyber Security', org: 'Coincent', date: 'Oct 2022' },
+  { name: 'Cloud Completion', org: 'IBM Skillbuild', date: 'Sep 2022' },
+  { name: 'MongoDB Node.js Developer', org: 'MongoDB Inc', date: 'Sep 2024' },
+];
+
 export default function Work() {
   const containerRef = useRef(null);
-
-  const projects = [
-    {
-      number: '01',
-      title: 'Real-Time Weather Forecasting App',
-      date: 'Apr 2024',
-      description: 'Developed a dynamic weather forecasting application using API-based real-time data retrieval. Designed an intuitive user interface for displaying live weather conditions and forecasts.',
-      tags: ['API Integration', 'Data Visualization', 'UI Design', 'Forecasting'],
-      link: 'https://github.com/RoronoaKarthi',
-      image: 'Weather.png',
-      imageLabel: 'WEATHER_SYS_01',
-    },
-    {
-      number: '02',
-      title: 'Stolen Vehicle Detection using YOLO',
-      date: 'June 2025',
-      description: 'Built a computer vision system to detect and track vehicles using YOLO and OpenCV. Integrated license plate recognition using EasyOCR/Tesseract. Implemented real-time database matching with alert generation and evidence logging.',
-      tags: ['YOLO', 'OpenCV', 'EasyOCR', 'Python', 'Computer Vision'],
-      link: 'https://github.com/RoronoaKarthi',
-      image: 'stolen vehicle.png',
-      imageLabel: 'VISION_SYS_02',
-    },
-    {
-      number: '03',
-      title: 'Interactive Websites',
-      date: 'June 2025',
-      description: 'Developed modern interactive websites with responsive design, engaging animations, and optimized user experiences using HTML, CSS, JavaScript, and React..',
-      tags: ['HTML', 'CSS', 'JavaScript', 'React', 'Responsive Design', 'UI/UX'],
-      link: 'https://github.com/RoronoaKarthi',
-      image: 'Web.png',
-      imageLabel: 'VISION_SYS_02',
-    },
-  ];
-
-  const certs = [
-    { name: 'Network Essentials', org: 'Cisco', date: 'Jun 2024' },
-    { name: 'AI Fundamentals', org: 'IBM Skillbuild', date: 'Mar 2024' },
-    { name: 'Cyber Security Fundamentals', org: 'IBM Skillbuild', date: 'Nov 2023' },
-    { name: 'Cyber Security', org: 'Coincent', date: 'Oct 2022' },
-    { name: 'Cloud Completion', org: 'IBM Skillbuild', date: 'Sep 2022' },
-    { name: 'MongoDB Node.js Developer', org: 'MongoDB Inc', date: 'Sep 2024' },
-  ];
 
   useEffect(() => {
     const ctx = gsap.context(() => {

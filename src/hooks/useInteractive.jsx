@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 // ─── Magnetic Button ───────────────────────────────────────────────────────────
 export function MagneticButton({ as: Tag = 'button', children, strength = 0.3, className, style, onClick, ...props }) {

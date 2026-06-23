@@ -1,9 +1,9 @@
-import React, { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { FiSend, FiActivity, FiShield, FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
-import { CursorAura, MagneticButton, TiltCard, SignalDot } from '../hooks/useInteractive';
+import { CursorAura, MagneticButton, SignalDot } from '../hooks/useInteractive';
 
 gsap.registerPlugin(ScrollTrigger);
 

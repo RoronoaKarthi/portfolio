@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
@@ -13,72 +13,89 @@ const punch = (el) => {
   gsap.fromTo(el, { scale: 0.92 }, { scale: 1, duration: 0.45, ease: 'back.out(3)' });
 };
 
-
+const quotes = [
+  "Don't be a part of the problem, be the entire problem.",
+  "As long as I live, there are infinite chances.",
+];
+const glitchChars = '!@#$%^&*<>?/\\|{}[]~';
 
 // Glitch Typewriter Quote Component
 const GlitchQuote = () => {
-  const quotes = [
-    "Don't be a part of the problem, be the entire problem.",
-    "As long as I live, there are infinite chances.",
-  ];
-  const [quoteIndex, setQuoteIndex] = React.useState(0);
-  const [displayed, setDisplayd] = React.useState('');
-  const [phase, setPhase] = React.useState('typing'); // typing | glitching | erasing
-  const glitchChars = '!@#$%^&*<>?/\\|{}[]~';
+  const [quoteIndex, setQuoteIndex] = useState(0);
+  const [displayed, setDisplayd] = useState('');
+  const [phase, setPhase] = useState('typing'); // typing | glitching | erasing
+  const [glitchChar, setGlitchChar] = useState('');
+  const [glitchCount, setGlitchCount] = useState(0);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const quote = quotes[quoteIndex];
     let timeout;
 
     if (phase === 'typing') {
-      if (displayed.length < quote.length) {
-        // Randomly glitch current char sometimes
+      if (glitchChar !== '') {
+        // Clear the glitch character after a brief delay
+        timeout = setTimeout(() => {
+          setGlitchChar('');
+        }, 60);
+      } else if (displayed.length < quote.length) {
         const next = quote[displayed.length];
         const shouldGlitch = Math.random() < 0.2;
         if (shouldGlitch) {
           const fake = glitchChars[Math.floor(Math.random() * glitchChars.length)];
-          setDisplayd(displayed + fake);
-          timeout = setTimeout(() => setDisplayd(displayed), 60);
+          timeout = setTimeout(() => {
+            setGlitchChar(fake);
+          }, 60);
         } else {
-          timeout = setTimeout(() => setDisplayd(displayed + next), 60);
+          timeout = setTimeout(() => {
+            setDisplayd(displayed + next);
+          }, 60);
         }
       } else {
-        timeout = setTimeout(() => setPhase('glitching'), 1800);
+        timeout = setTimeout(() => {
+          setPhase('glitching');
+        }, 1800);
       }
     }
 
     if (phase === 'glitching') {
-      let count = 0;
-      const glitch = () => {
-        setDisplayd(
-          quote.split('').map((ch, i) =>
-            Math.random() < 0.15
-              ? glitchChars[Math.floor(Math.random() * glitchChars.length)]
-              : ch
-          ).join('')
-        );
-        count++;
-        if (count < 8) {
-          timeout = setTimeout(glitch, 80);
-        } else {
+      if (glitchCount < 8) {
+        timeout = setTimeout(() => {
+          setDisplayd(
+            quote
+              .split('')
+              .map((ch) =>
+                Math.random() < 0.15
+                  ? glitchChars[Math.floor(Math.random() * glitchChars.length)]
+                  : ch
+              )
+              .join('')
+          );
+          setGlitchCount(glitchCount + 1);
+        }, 80);
+      } else {
+        timeout = setTimeout(() => {
           setDisplayd(quote);
-          timeout = setTimeout(() => setPhase('erasing'), 400);
-        }
-      };
-      timeout = setTimeout(glitch, 80);
+          setPhase('erasing');
+          setGlitchCount(0);
+        }, 400);
+      }
     }
 
     if (phase === 'erasing') {
       if (displayed.length > 0) {
-        timeout = setTimeout(() => setDisplayd(displayed.slice(0, -1)), 30);
+        timeout = setTimeout(() => {
+          setDisplayd(displayed.slice(0, -1));
+        }, 30);
       } else {
-        setQuoteIndex((quoteIndex + 1) % quotes.length);
-        setPhase('typing');
+        timeout = setTimeout(() => {
+          setQuoteIndex((prevIndex) => (prevIndex + 1) % quotes.length);
+          setPhase('typing');
+        }, 30);
       }
     }
 
     return () => clearTimeout(timeout);
-  }, [displayed, phase, quoteIndex]);
+  }, [displayed, phase, quoteIndex, glitchChar, glitchCount]);
 
   return (
     <div className="absolute top-24 left-8 md:left-16 z-[15] max-w-[320px] pointer-events-none">
@@ -94,6 +111,7 @@ const GlitchQuote = () => {
         }}
       >
         "{displayed}
+        {glitchChar}
         <span style={{
           display: 'inline-block',
           width: '2px',
@@ -117,9 +135,9 @@ const GlitchQuote = () => {
 
 // Scroll Indicator Component
 const ScrollIndicator = () => {
-  const [atBottom, setAtBottom] = React.useState(false);
+  const [atBottom, setAtBottom] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.scrollY;
       const total = document.documentElement.scrollHeight - window.innerHeight;
